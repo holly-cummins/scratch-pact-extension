@@ -11,15 +11,18 @@
     <module>deployment</module>
     <module>runtime</module>
   </modules>
-  <properties>
-    <compiler-plugin.version>3.8.1</compiler-plugin.version>
-    <failsafe-plugin.version>${surefire-plugin.version}</failsafe-plugin.version>
-    <maven.compiler.release>11</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus.version>2.12.0.Final</quarkus.version>
-    <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-  </properties>
+    <properties>
+        <compiler-plugin.version>3.8.1</compiler-plugin.version>
+        <failsafe-plugin.version>${surefire-plugin.version}</failsafe-plugin.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <quarkus.version>2.12.0.Final</quarkus.version>
+        <pact.version>4.3.14</pact.version>
+        <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -31,6 +34,13 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>au.com.dius.pact.provider</groupId>
+      <artifactId>junit5</artifactId>
+      <version>${pact.version}</version>
+    </dependency>
+  </dependencies>
   <build>
     <pluginManagement>
       <plugins>

@@ -3,12 +3,15 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="Quarkus" url="file://$PROJECT_DIR$/deployment" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/integration-tests" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/runtime" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/runtime/pom.xml" />
+        <option value="$PROJECT_DIR$/integration-tests/pom.xml" />
       </list>
     </option>
   </component>

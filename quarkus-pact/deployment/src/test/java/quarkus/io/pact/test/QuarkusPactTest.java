@@ -1,23 +1,51 @@
 package quarkus.io.pact.test;
 
+import au.com.dius.pact.provider.junit5.HttpTestTarget;
+import au.com.dius.pact.provider.junit5.PactVerificationContext;
+import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider;
+import au.com.dius.pact.provider.junitsupport.Provider;
+import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
+import io.quarkus.test.QuarkusUnitTest;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestTemplate;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import sample.house.ResidentResource;
+import sample.resident.Resident;
 
-import io.quarkus.test.QuarkusUnitTest;
-
+@Provider("House")
+@PactFolder("pacts")
 public class QuarkusPactTest {
 
     // Start unit test with your extension loaded
     @RegisterExtension
     static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
-        .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class));
+            .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class).addClasses(ResidentResource.class, Resident.class));
 
-    @Test
-    public void writeYourOwnUnitTest() {
-        // Write your unit tests here - see the testing extension guide https://quarkus.io/guides/writing-extensions#testing-extensions for more information
-        Assertions.assertTrue(true, "Add some assertions to " + getClass().getName());
+//    @Test
+//    public void writeYourOwnUnitTest() {
+//        // Write your unit tests here - see the testing extension guide https://quarkus.io/guides/writing-extensions#testing-extensions for more information
+//        Assertions.assertTrue(true, "Add some assertions to " + getClass().getName());
+//    }
+
+
+    // TODO the extension can probably do this, like it does for rest assured
+    @BeforeEach
+    void before(PactVerificationContext context) {
+        context.setTarget(new HttpTestTarget("localhost", 8081));
     }
+
+    @TestTemplate
+    @ExtendWith(PactVerificationInvocationContextProvider.class)
+    void pactVerificationTestTemplate(PactVerificationContext context) {
+        context.verifyInteraction();
+    }
+
+//    // TODO needed to make dev mode see the test
+//    @Test
+//    void testHello() {
+//        throw new RuntimeException("Well");
+//    }
 }
