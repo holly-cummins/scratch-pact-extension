@@ -17,5 +17,5 @@ class QuarkusPactProcessor {
     @BuildStep
     void addDependencies(BuildProducer<IndexDependencyBuildItem> indexDependency) {
         indexDependency.produce(new IndexDependencyBuildItem("au.com.dius.pact.provider", "junit5"));
-       }
+    }
 }
