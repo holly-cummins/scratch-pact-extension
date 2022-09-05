@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>quarkus.io</groupId>
   <artifactId>quarkus-pact-parent</artifactId>
@@ -10,19 +10,20 @@
   <modules>
     <module>deployment</module>
     <module>runtime</module>
+    <module>integration-tests</module>
   </modules>
-    <properties>
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
-        <failsafe-plugin.version>${surefire-plugin.version}</failsafe-plugin.version>
-        <maven.compiler.release>11</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus.version>2.12.0.Final</quarkus.version>
-        <pact.version>4.3.14</pact.version>
-        <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+  <properties>
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
+    <failsafe-plugin.version>${surefire-plugin.version}</failsafe-plugin.version>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <quarkus.version>2.12.0.Final</quarkus.version>
+    <pact.version>4.3.14</pact.version>
+    <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
