@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>quarkus.io</groupId>
@@ -14,6 +14,10 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-kotlin</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -21,6 +25,16 @@
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-extension-maven-plugin</artifactId>
         <version>${quarkus.version}</version>
+        <configuration>
+          <parentFirstArtifacts>
+            <parentFirstArtifact>io.github.microutils:kotlin-logging-jvm</parentFirstArtifact>
+            <parentFirstArtifact>com.michael-bull.kotlin-result:kotlin-result-jvm</parentFirstArtifact>
+          </parentFirstArtifacts>
+          <runnerParentFirstArtifacts>
+            <runnerParentFirstArtifact>io.github.microutils:kotlin-logging-jvm</runnerParentFirstArtifact>
+            <runnerParentFirstArtifact>com.michael-bull.kotlin-result:kotlin-result-jvm</runnerParentFirstArtifact>
+          </runnerParentFirstArtifacts>
+        </configuration>
         <executions>
           <execution>
             <phase>compile</phase>
