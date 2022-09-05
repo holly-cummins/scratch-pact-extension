@@ -49,7 +49,6 @@ public class DevModeContractTestIT extends RunAndCheckMojoTestBase {
         testDir = initProject("projects/bff", "projects/multimodule-with-deps");
         runAndCheck();
 
-        System.out.println("HOLLY DONE RUN");
         // test that we don't get multiple instances of a resource when loading from the ClassLoader
         await()
                 .pollDelay(100, TimeUnit.MILLISECONDS)
