@@ -7,14 +7,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 /**
- * Because Pact seems to use Kotlin under the covers, we see different behaviour
+ * Because Pact uses Kotlin under the covers, we see different behaviour
  * in continuous testing and normal maven modes. This test exercises the continuous
  * testing with Pact.
  * <p>
@@ -26,7 +25,7 @@ import static org.awaitility.Awaitility.await;
 public class DevModeContractTestIT extends RunAndCheckMojoTestBase {
 
 
-    protected void runAndCheck(String... options) throws FileNotFoundException, MavenInvocationException {
+    protected void runAndCheck(String... options) throws MavenInvocationException {
         runAndCheck(true, options);
     }
 
@@ -36,15 +35,15 @@ public class DevModeContractTestIT extends RunAndCheckMojoTestBase {
 
         String resp = DevModeTestUtils.getHttpResponse();
 
-//        assertThat(resp).containsIgnoringCase("ready").containsIgnoringCase("application").containsIgnoringCase("org.acme")
-//                .containsIgnoringCase("1.0-SNAPSHOT");
-//
-//        String greeting = DevModeTestUtils.getHttpResponse("/app/hello");
-//        assertThat(greeting).containsIgnoringCase("hello");
+        assertThat(resp).containsIgnoringCase("ready").containsIgnoringCase("application")
+                .containsIgnoringCase("1.0-SNAPSHOT");
+
+        String json = DevModeTestUtils.getHttpResponse("/resident");
+        assertThat(json).containsIgnoringCase("room");
     }
 
     @Test
-    public void testThatTheTestsPassed() throws MavenInvocationException, IOException {
+    public void testThatTheTestsPassed() throws MavenInvocationException {
         //we also check continuous testing
         testDir = initProject("projects/bff", "projects/multimodule-with-deps");
         runAndCheck();
