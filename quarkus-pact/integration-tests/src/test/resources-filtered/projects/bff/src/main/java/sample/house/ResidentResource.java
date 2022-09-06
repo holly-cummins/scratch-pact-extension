@@ -46,7 +46,7 @@ public class ResidentResource {
         // Why don't these blow up since I should have removed these classes?
         System.out.println("HOLLY resident sees " + PactVerificationContext.class);
         System.out.println("HOLLY resident sees " + PactFolderLoader.class.getProtectionDomain());
-        System.out.println("HOLLY resident sees " + new PactFolderLoader((PactFolder) new DebugAnnotation()).getPactSource());
+        //   System.out.println("HOLLY resident sees " + new PactFolderLoader((PactFolder) new DebugAnnotation()).getPactSource());
         wakeResident(abby);
         return abby;
     }
