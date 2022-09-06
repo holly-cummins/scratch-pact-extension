@@ -29,11 +29,20 @@
           <parentFirstArtifacts>
             <parentFirstArtifact>io.github.microutils:kotlin-logging-jvm</parentFirstArtifact>
             <parentFirstArtifact>com.michael-bull.kotlin-result:kotlin-result-jvm</parentFirstArtifact>
+            <parentFirstArtifact>org.antlr:antlr4-runtime</parentFirstArtifact>
+            <parentFirstArtifact>io.ktor:ktor-http-jvm</parentFirstArtifact>
+            <parentFirstArtifact>org.apache.tika:tika-core</parentFirstArtifact>
+            <parentFirstArtifact>org.apache.httpcomponents.core5:httpcore5</parentFirstArtifact>
+            <parentFirstArtifact>org.apache.httpcomponents.client5:httpclient5</parentFirstArtifact>
+            <parentFirstArtifact>com.github.ajalt:mordant</parentFirstArtifact>
+            <!-- Here we go back into Java code from the Kotlin code -->
+            <parentFirstArtifact>au.com.dius.pact.core:matchers</parentFirstArtifact>
+            <parentFirstArtifact>io.pact.plugin.driver:core</parentFirstArtifact>
+            <!-- Uh oh - this is referenced by Kotlin but making it parent first seems risky -->
+            <parentFirstArtifact>org.apache.commons:commons-collections4</parentFirstArtifact>
+            <parentFirstArtifact>com.github.zafarkhaja:java-semver</parentFirstArtifact>
+            <parentFirstArtifact>io.github.java-diff-utils:java-diff-utils</parentFirstArtifact>
           </parentFirstArtifacts>
-          <runnerParentFirstArtifacts>
-            <runnerParentFirstArtifact>io.github.microutils:kotlin-logging-jvm</runnerParentFirstArtifact>
-            <runnerParentFirstArtifact>com.michael-bull.kotlin-result:kotlin-result-jvm</runnerParentFirstArtifact>
-          </runnerParentFirstArtifacts>
         </configuration>
         <executions>
           <execution>
