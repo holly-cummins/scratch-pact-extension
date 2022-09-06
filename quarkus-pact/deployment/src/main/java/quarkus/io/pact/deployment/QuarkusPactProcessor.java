@@ -1,7 +1,6 @@
 package quarkus.io.pact.deployment;
 
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
-import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
 import au.com.dius.pact.provider.junitsupport.loader.PactFolderLoader;
 import io.quarkus.deployment.annotations.BuildProducer;
@@ -75,13 +74,12 @@ class QuarkusPactProcessor {
     @BuildStep
     RemovedResourceBuildItem overrideSubstitutions() {
         return new RemovedResourceBuildItem(ArtifactKey.fromString("au.com.dius.pact.provider:junit5"),
-                Collections.singleton(PactVerificationContext.class.getName()));
+                Collections.singleton("au/com/dius/pact/provider/junit5/PactVerificationContext.class"));
     }
 
     @BuildStep
     RemovedResourceBuildItem overrideSubstitutions2() {
-        System.out.println("HOLLY YO DITCHED that artifact");
         return new RemovedResourceBuildItem(ArtifactKey.fromString("au.com.dius.pact:provider"),
-                Collections.singleton(Provider.class.getName()));
+                Collections.singleton("au/com/dius/pact/provider/junitsupport/Provider.class"));
     }
 }
