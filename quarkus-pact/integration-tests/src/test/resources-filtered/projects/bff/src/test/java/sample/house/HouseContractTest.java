@@ -11,18 +11,23 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @Provider("House")
-@PactFolder("pacts")
+//@PactFolder("pacts")
+@PactFolder("/Users/holly/Code/quarkus/pact/quarkus-pact/integration-tests/target/test-classes/projects/bff/src/test/resources/pacts")
 @QuarkusTest // This starts the server on port 8081 for convenience in testing
 public class HouseContractTest {
 
     @BeforeEach
     void before(PactVerificationContext context) {
+        System.out.println("holly made a context with " + context.getClass().getProtectionDomain());
         context.setTarget(new HttpTestTarget("localhost", 8081));
     }
 
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
     void pactVerificationTestTemplate(PactVerificationContext context) {
+
+        System.out.println("holly extendaroo with " + context.getClass().getProtectionDomain());
+
         context.verifyInteraction();
     }
 
