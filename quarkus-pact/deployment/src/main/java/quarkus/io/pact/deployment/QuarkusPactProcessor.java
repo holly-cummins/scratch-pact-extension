@@ -39,21 +39,6 @@ class QuarkusPactProcessor {
         indexDependency.produce(new IndexDependencyBuildItem("au.com.dius.pact.provider", "junit5"));
     }
 
-    @BuildStep
-    AnnotationsTransformerBuildItem transform() {
-        return new AnnotationsTransformerBuildItem(new AnnotationsTransformer() {
-
-            public boolean appliesTo(org.jboss.jandex.AnnotationTarget.Kind kind) {
-                return kind == org.jboss.jandex.AnnotationTarget.Kind.METHOD;
-            }
-
-            public void transform(TransformationContext context) {
-                if (context.getTarget().asMethod().hasAnnotation(JAX_RS_GET)) {
-                    context.transform().add(MinecraftLog.class).done();
-                }
-            }
-        });
-    }
 
     @BuildStep
     AnnotationsTransformerBuildItem transform2() {
