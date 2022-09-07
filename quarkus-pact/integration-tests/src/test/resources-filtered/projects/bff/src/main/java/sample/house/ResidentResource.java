@@ -1,9 +1,7 @@
 package sample.house;
 
 import au.com.dius.pact.core.support.expressions.ValueResolver;
-import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
-import au.com.dius.pact.provider.junitsupport.loader.PactFolderLoader;
 import sample.resident.Resident;
 
 import javax.ws.rs.CookieParam;
@@ -43,10 +41,6 @@ public class ResidentResource {
     private Resident createResident(String sessionId) {
         final Resident abby = new Resident();
         residents.put(sessionId, abby);
-        // Why don't these blow up since I should have removed these classes?
-        System.out.println("HOLLY resident sees " + PactVerificationContext.class);
-        System.out.println("HOLLY resident sees " + PactFolderLoader.class.getProtectionDomain());
-        //   System.out.println("HOLLY resident sees " + new PactFolderLoader((PactFolder) new DebugAnnotation()).getPactSource());
         wakeResident(abby);
         return abby;
     }
