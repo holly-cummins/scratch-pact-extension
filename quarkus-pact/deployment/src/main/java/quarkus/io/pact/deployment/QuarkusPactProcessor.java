@@ -1,8 +1,6 @@
 package quarkus.io.pact.deployment;
 
-import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
-import au.com.dius.pact.provider.junitsupport.loader.PactFolderLoader;
 import io.quarkus.arc.deployment.AnnotationsTransformerBuildItem;
 import io.quarkus.arc.processor.AnnotationsTransformer;
 import io.quarkus.deployment.annotations.BuildProducer;
@@ -10,14 +8,11 @@ import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.BytecodeTransformerBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.builditem.IndexDependencyBuildItem;
-import io.quarkus.deployment.builditem.RemovedResourceBuildItem;
-import io.quarkus.maven.dependency.ArtifactKey;
 import org.jboss.jandex.AnnotationInstance;
 import org.jboss.jandex.AnnotationTarget;
 import org.jboss.jandex.AnnotationValue;
 import org.jboss.jandex.DotName;
 
-import java.util.Collections;
 import java.util.List;
 
 class QuarkusPactProcessor {
@@ -73,29 +68,15 @@ class QuarkusPactProcessor {
     }
 
 
+    //TODO do not hardcode
+    // TODO return a collection
     @BuildStep
-    BytecodeTransformerBuildItem reworkClassLoadingOfPactSource() {
-
-
-        // TODO is dotname needed?
-        String name = PactFolderLoader.class.getName();
+    BytecodeTransformerBuildItem reworkClassLoadingOfPactSourceTest2() {
+        DotName simple = DotName.createSimple("sample.house.HouseContractTest");
         return new BytecodeTransformerBuildItem.Builder()
-                .setClassToTransform(DotName.createSimple(name).toString())
-                .setVisitorFunction((ignored, visitor) -> new DestructiveClassVisitor(visitor,
-                        name))
-                .build();
-
-    }
-
-
-    @BuildStep
-    BytecodeTransformerBuildItem reworkClassLoadingOfPactSource2() {
-
-        String name = PactFolder.class.getName();
-        return new BytecodeTransformerBuildItem.Builder()
-                .setClassToTransform(DotName.createSimple(name).toString())
-                .setVisitorFunction((ignored, visitor) -> new DestructiveClassVisitor(visitor,
-                        name))
+                .setClassToTransform(simple.toString())
+                .setVisitorFunction((ignored, visitor) -> new AnnotationAdjuster(visitor,
+                        simple.toString()))
                 .build();
 
     }
@@ -111,26 +92,5 @@ class QuarkusPactProcessor {
 
     }
 
-    @BuildStep
-    BytecodeTransformerBuildItem reworkClassLoadingOfPactSource3() {
 
-        return new BytecodeTransformerBuildItem.Builder()
-                .setClassToTransform(DotName.createSimple(PactVerificationContext.class.getName()).toString())
-                .setVisitorFunction((ignored, visitor) -> new DestructiveClassVisitor(visitor,
-                        PactVerificationContext.class.getName()))
-                .build();
-
-    }
-
-    @BuildStep
-    RemovedResourceBuildItem removeClass() {
-        return new RemovedResourceBuildItem(ArtifactKey.fromString("au.com.dius.pact.provider:junit5"),
-                Collections.singleton("au/com/dius/pact/provider/junit5/PactVerificationContext.class"));
-    }
-
-    @BuildStep
-    RemovedResourceBuildItem overrideSubstitutions2() {
-        return new RemovedResourceBuildItem(ArtifactKey.fromString("au.com.dius.pact:provider"),
-                Collections.singleton("au/com/dius/pact/provider/junitsupport/Provider.class"));
-    }
 }

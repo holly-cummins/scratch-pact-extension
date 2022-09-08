@@ -24,6 +24,7 @@ public class DestructiveClassVisitor extends ClassVisitor {
 
     public DestructiveClassVisitor(ClassVisitor visitor, String className) {
         super(Gizmo.ASM_API_VERSION, visitor);
+        System.out.println("YO logging adder " + className);
 
         this.className = className;
     }
@@ -32,16 +33,9 @@ public class DestructiveClassVisitor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
 
 
-        // This should remove the method, right?
-        //  return null;
-        //   }
-        //   MethodVisitor mv = super.visitMethod(access, name, descriptor, signature, exceptions);
-
-
         MethodVisitor parent = super.visitMethod(access, name, descriptor, signature, exceptions);
         LoggingVisitor insertInitCodeBeforeReturnMethodVisitor = new LoggingVisitor(parent, className, name);
         return insertInitCodeBeforeReturnMethodVisitor;
-
 
     }
 }

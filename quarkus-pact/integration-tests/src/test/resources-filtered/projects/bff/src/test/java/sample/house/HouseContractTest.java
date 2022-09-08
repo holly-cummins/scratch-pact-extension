@@ -22,13 +22,11 @@ public class HouseContractTest {
 
     @BeforeEach
     void before(PactVerificationContext context) {
-        System.out.println("holly made a context with " + context.getClass().getProtectionDomain());
-
         URL resourcePath = PactFolderLoader.class.getClassLoader().getResource("pacts");
         System.out.println("HOLLY this loader " + this.getClass().getClassLoader());
         System.out.println("HOLLY this would see " + this.getClass().getClassLoader().getResource("pacts"));
-        System.out.println("HOLLY this folder  " + PactFolder.class.getClassLoader());
-        System.out.println("HOLLY this would see " + PactFolder.class.getClassLoader().getResource("pacts"));
+        System.out.println("HOLLY folder  " + PactFolder.class.getClassLoader());
+        System.out.println("HOLLY folder would see " + PactFolder.class.getClassLoader().getResource("pacts"));
 
         System.out.println("HOLLY loader " + PactFolderLoader.class.getClassLoader());
         System.out.println("my annotations is " + Arrays.toString(this.getClass().getAnnotations()));
