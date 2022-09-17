@@ -1,13 +1,14 @@
 package quarkus.io.pact.it;
 
+import io.quarkus.maven.it.RunAndCheckMojoTestBase;
 import io.quarkus.maven.it.continuoustesting.ContinuousTestingMavenTestUtils;
 import io.quarkus.test.devmode.util.DevModeTestUtils;
 import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
-import quarkus.io.pact.it.testutil.RunAndCheckMojoTestBase;
 
+import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,12 +27,12 @@ import static org.awaitility.Awaitility.await;
 public class DevModeContractTestIT extends RunAndCheckMojoTestBase {
 
 
-    protected void runAndCheck(String... options) throws MavenInvocationException {
+    protected void runAndCheck(String... options) throws MavenInvocationException, FileNotFoundException {
         runAndCheck(true, options);
     }
 
     protected void runAndCheck(boolean performCompile, String... options)
-            throws MavenInvocationException {
+            throws MavenInvocationException, FileNotFoundException {
         run(performCompile, options);
 
         String resp = DevModeTestUtils.getHttpResponse();
@@ -44,7 +45,7 @@ public class DevModeContractTestIT extends RunAndCheckMojoTestBase {
     }
 
     @Test
-    public void testThatTheTestsPassed() throws MavenInvocationException {
+    public void testThatTheTestsPassed() throws MavenInvocationException, FileNotFoundException {
         //we also check continuous testing
         testDir = initProject("projects/bff", "projects/multimodule-with-deps");
         runAndCheck();
