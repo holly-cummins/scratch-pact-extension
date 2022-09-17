@@ -34,8 +34,8 @@ public class HouseContractTest {
 
         System.out.println("HOLLY URL is " + resourcePath);
 
-
-        context.setTarget(new HttpTestTarget("localhost", 8081));
+// To avoid clashes with other tests, we use a non-default port
+        context.setTarget(new HttpTestTarget("localhost", 8083));
     }
 
 

@@ -28,7 +28,8 @@ public class DevModeContractTestIT extends RunAndCheckMojoTestBase {
 
 
     protected void runAndCheck(String... options) throws MavenInvocationException, FileNotFoundException {
-        runAndCheck(true, options);
+        // To avoid clashes with other tests, we use a non-default port
+        runAndCheck(true, "-Dquarkus.http.test-port=8083");
     }
 
     protected void runAndCheck(boolean performCompile, String... options)

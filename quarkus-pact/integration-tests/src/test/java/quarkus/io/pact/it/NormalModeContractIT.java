@@ -29,7 +29,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @Provider("House")
 @PactFolder("pacts")
 @QuarkusTest // This starts the server on port 8081 for convenience in testing
-public class NormalModeContractTest {
+public class NormalModeContractIT {
 
     // TODO the extension can probably do this, like it does for rest assured
     @BeforeEach
