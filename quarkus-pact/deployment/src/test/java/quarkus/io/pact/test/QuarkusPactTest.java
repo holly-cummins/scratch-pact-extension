@@ -42,10 +42,4 @@ public class QuarkusPactTest {
     void pactVerificationTestTemplate(PactVerificationContext context) {
         context.verifyInteraction();
     }
-
-//    // TODO needed to make dev mode see the test
-//    @Test
-//    void testHello() {
-//        throw new RuntimeException("Well");
-//    }
 }
