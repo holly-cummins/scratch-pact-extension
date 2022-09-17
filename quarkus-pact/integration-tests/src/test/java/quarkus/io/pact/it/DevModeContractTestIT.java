@@ -6,6 +6,7 @@ import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
+import quarkus.io.pact.it.testutil.RunAndCheckMojoTestBase;
 
 import java.util.concurrent.TimeUnit;
 

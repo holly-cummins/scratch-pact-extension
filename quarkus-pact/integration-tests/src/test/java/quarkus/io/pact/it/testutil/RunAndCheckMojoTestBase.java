@@ -1,4 +1,4 @@
-package quarkus.io.pact.it;
+package quarkus.io.pact.it.testutil;
 
 import io.quarkus.maven.it.MojoTestBase;
 import io.quarkus.maven.it.verifier.RunningInvoker;
@@ -7,7 +7,6 @@ import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.junit.jupiter.api.AfterEach;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -62,12 +61,8 @@ public class RunAndCheckMojoTestBase extends MojoTestBase {
         running.execute(args, Collections.emptyMap());
     }
 
-    protected void runAndCheck(String... options) throws FileNotFoundException, MavenInvocationException {
-        runAndCheck(true, options);
-    }
-
     protected void runAndCheck(boolean performCompile, String... options)
-            throws FileNotFoundException, MavenInvocationException {
+            throws MavenInvocationException {
         run(performCompile, options);
 
         String resp = DevModeTestUtils.getHttpResponse();
