@@ -24,13 +24,6 @@ public class QuarkusPactTest {
     static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
             .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class).addClasses(ResidentResource.class, Resident.class));
 
-//    @Test
-//    public void writeYourOwnUnitTest() {
-//        // Write your unit tests here - see the testing extension guide https://quarkus.io/guides/writing-extensions#testing-extensions for more information
-//        Assertions.assertTrue(true, "Add some assertions to " + getClass().getName());
-//    }
-
-
     // TODO the extension can probably do this, like it does for rest assured
     @BeforeEach
     void before(PactVerificationContext context) {
