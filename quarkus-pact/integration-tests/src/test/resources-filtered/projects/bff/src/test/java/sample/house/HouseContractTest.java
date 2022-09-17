@@ -15,8 +15,8 @@ import java.net.URL;
 import java.util.Arrays;
 
 @Provider("House")
-//@PactFolder("pacts")
-@PactFolder("/Users/holly/Code/quarkus/pact/quarkus-pact/integration-tests/target/test-classes/projects/bff/src/test/resources/pacts")
+@PactFolder("pacts")
+//@PactFolder("/Users/holly/Code/quarkus/pact/quarkus-pact/integration-tests/target/test-classes/projects/bff/src/test/resources/pacts")
 @QuarkusTest // This starts the server on port 8081 for convenience in testing
 public class HouseContractTest {
 
