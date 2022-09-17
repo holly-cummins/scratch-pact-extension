@@ -42,11 +42,4 @@ public class ProgramaticallyInvokedHouseContractTest {
     void pactVerificationTestTemplate(PactVerificationContext context) {
         context.verifyInteraction();
     }
-
-    // TODO needed to make dev mode see the test, but then fails in cmd line mode
-    //@Test
-    void testHello() {
-        throw new RuntimeException("Well");
-    }
-
 }

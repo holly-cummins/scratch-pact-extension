@@ -20,9 +20,10 @@ import sample.resident.Resident;
 public class QuarkusPactTest {
 
     // Start unit test with your extension loaded
+    // We also need to load in the pacts we will be using, since this extension changes the classloader of the test
     @RegisterExtension
     static final QuarkusUnitTest unitTest = new QuarkusUnitTest()
-            .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class).addClasses(ResidentResource.class, Resident.class));
+            .setArchiveProducer(() -> ShrinkWrap.create(JavaArchive.class).addClasses(ResidentResource.class, Resident.class).addAsResource(ClassLoader.getSystemClassLoader().getResource("pacts/app-house.json"), "pacts/app-house.json"));
 
     // TODO the extension can probably do this, like it does for rest assured
     @BeforeEach
